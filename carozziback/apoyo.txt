@@ -1,0 +1,32 @@
+	
+	//models.RegisUser(conn, "Administrador", "admin", "admin")
+	//models.RegisProfile(conn, "Mantenedor", "Trabajador")
+	//models.RegisAccessPerm(conn, "Lectura", "solo leer la información")
+    
+    models.RegistrarActivity(conn, "Falla / cambio de Bomba", "")
+	models.RegistrarActivity(conn, "Falla / cambio de Cadena", "")
+
+	models.RegistrarTipoInterv(conn, "intervencioó en Producción", "")
+	models.RegistrarTipoInterv(conn, "intervención Fuera de Producción", "")
+	models.RegistrarTipoInterv(conn, "Ronda e Inspección", "")
+	models.RegistrarTipoInterv(conn, "Registro información Relevante", "")
+
+	models.RegistrarEquipStatus(conn, "intervencioó en Producción", "")
+	models.RegistrarEquipStatus(conn, "intervención Fuera de Producción", "")
+	models.RegistrarEquipStatus(conn, "Ronda e Inspección", "")
+	models.RegistrarEquipStatus(conn, "Registro información Relevante", "")
+
+	models.RegistrarFalla(conn, "Falla Operacional", "")
+	models.RegistrarFalla(conn, "Falla Soldadura", "")
+
+	models.RegistrarModoFalla(conn, "Aseo General", "")
+	models.RegistrarModoFalla(conn, "Falta de Personal", "")
+
+	models.RegistrarEspecialidad(conn, "Mecanico", "")
+	models.RegistrarEspecialidad(conn, "Electrico", "")
+	models.RegistrarEspecialidad(conn, "Soldadura", "")
+
+	models.RegistrarTypeMant(conn, "Correctivo", "")
+	models.RegistrarTypeMant(conn, "Preventivo", "")
+	models.RegistrarTypeMant(conn, "Predictivo", "")
+	models.RegistrarTypeMant(conn, "Correctivo-Programada", "")
