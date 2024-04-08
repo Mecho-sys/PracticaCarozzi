@@ -1,0 +1,40 @@
+Para poder instalar y utilizar la aplicacion se necesitan tener instalados las dependencias de los sig:
+- React.
+    para poder instalar react es necesario seguir los siguientes pasos:
+    -Instalar nodeJs, para poder obtener la herramienta "npm", para eso ir a la pagina de node y descargar el instalador: "https://nodejs.org/en/download/current"
+    -Luego de instalarlo abrir una terminal apretando la convinacion de "tecla de windows + R", y al abrirse una pequena pestaña colocar "cmd" y dar enter.
+    -En la consola escribir "node -v", si apareces un mensaje como "v18.16.0", estara completa la instalción. 
+
+- Go lang.
+    para poder usar go es necesario seguir los siguientes pasos:
+    -Descargar el instalador de go desde la pagina oficial: "https://go.dev/doc/install"
+    -Luego de instalarlo dentro de la terminal escribir "go version", si aparece un mensaje similar a "go version go1.22.0 windows/amd64", la instalación esta completa.
+
+- Base de datos a eleccion.
+    para la base de datos lo primero es seleccionar la que se quiera usar. la que use para hacer las pruebas de esta aplicación es SQLserver
+    para lograr instalar SQLserver recomiendo seguir los pasos del siguiente video, donde se explica a detalle la instalación: https://www.youtube.com/watch?v=mA1qoWdNCOE&t=787s
+    - En mi caso cuando estaba trabajando utilice la version "developer", por lo demas lo que hice es similar a lo mostrado en el video. 
+
+    En el caso de usar otra base de datos, con colocar el nombre en google y buscar la guia de instalación.
+
+Luego de tener todas estas herramientas ya instaladas pasaremos a descargar el repositorio de la aplicación, para eso ir al siguiente link: "https://github.com/Mecho-sys/PracticaCarozzi"
+le das click al boton de code y seleccionas la opcion de "Download ZIP", con esto se descargara el proyecto.
+Buscar el proyecto descargado y descomprimirlo en una carpeta, al abrir la carpeta tendras 2 carpetas más "carozzifront" y "carozziback", aqui es donde esta todo el codigo de la aplicación
+
+Dentro de carozziback esta el archivo main.go, en el cual deberemos cambiar una linea para agregar los datos de la base de datos, como durante el desarrollo se trabajo con SQLserver
+la linea que necesitamos buscar es:
+    conn, err := connection.GetConnection("sa", "2015nico", "1433", "Pruebas")
+donde cada uno de los elementos entre "" es un dato siendo: usuario, contraseña, puerto y nombre de la base de datos, respectivamente, ahi se cambiaran por los que usen.
+
+
+Para poder iniciar la aplicacion usaremos la terminal nuevamanete para esto usaremos el buscador del gestor de archivos (donde sale la ruta de la carpeta en la que se esta)
+donde aparecera la ruta de la siguiente forma "> /nombre de carpeta/ > PracticaCarozzi", al hacer clic en esa barra y colocar "cmd" se abrira una terminal dentro de esa carpeta
+Ahora recomiendo abrir 2 terminales:
+    - En la primera se colocara "cd carozziback", lo que te permitira entrar a la carpeta donde esta el codigo en go
+        - Una vez dentro y ya teniendo go instalado, se colocara "go run main.go"
+            Esto hara que el programa comience a funcionar, en caso de fallar te mostrara dentro del mensaje que fallo, lo más seguro es que falte alguna lobreria para 
+            el correcto funcionamiento, en caso de ser eso solo se necesita instalar la misma. (con colocar el nombre en el buscador aparecera el comando para instalarlo)
+            luego de tener todo lo necesario se iniciara el servidor
+    - En la segunda se colocara "cd carozzifront", ingresando ahora a la carpeta con el codigo en react. 
+        - una vez dentro usaremos "npm install", lo que hara es descargar todo lo necesario para poder funcionar el programa, en este sentido es más sencillo que el anterior
+        - Luego se coloca "npm start" y si todo esta instalado correctamente se abrira automaticamente una ventana en el buscador con la pagina.
