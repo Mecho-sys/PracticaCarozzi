@@ -1,0 +1,156 @@
+
+import React, { useState, useEffect } from "react";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+import axios from "axios";
+
+export default function Facilities() {
+  const [dataPlant, setDataPlant] = useState([]);
+  const [dataArea, setDataArea] = useState([]);
+  const [dataEquip, setDataEquip] = useState([]);
+  const [dataComp, setDataComp] = useState([]);
+
+
+  const [plantId, setPlantId] = React.useState(1);
+  const [areaId, setAreaId] = React.useState('');
+  const [equipId, setEquipId] = React.useState('');
+
+  const handleChange = (event) => {
+    setPlantId(event.target.value);
+  };
+  const handleChangeArea = (event) => {
+    setAreaId(event.target.value);
+  };
+  const handleChangeEquipo = (event) => {
+    setEquipId(event.target.value);
+  };
+
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/plants", {
+        headers: {
+          //Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setDataPlant(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  console.log(dataPlant);
+
+  const handleGetAreaByPlantId = () => {
+    axios
+      .get(`http://localhost:8080/api/areaByPlant/${plantId}`, {
+        headers: {
+          //Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setDataArea(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al buscar las areas de la planta:", error);
+      });
+  };
+  console.log(dataArea);
+
+  const handleGetEquipByAreaId = () => {
+    axios
+      .get(`http://localhost:8080/api/equipByArea/${areaId}`, {
+        headers: {
+          //Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setDataEquip(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al registrar datos masivos:", error);
+      });
+  };
+  console.log(dataEquip);
+
+  const handleGetCompByEquipId = () => {
+    axios
+      .get(`http://localhost:8080/api/CompByEquip/${equipId}`, {
+        headers: {
+          //Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setDataComp(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al registrar datos masivos:", error);
+      });
+  };
+  console.log(dataComp);
+
+  return (
+    <div>
+      <p>Hola esta es la pagina de inicio</p>
+
+      <button onClick={handleGetAreaByPlantId}>Buscar Lineas</button>
+      <button onClick={handleGetEquipByAreaId}>Buscar equipos</button>
+      <button onClick={handleGetCompByEquipId}>Buscar Componentes</button>
+
+      <Box sx={{ maxWidth: 200 }}>
+        <FormControl fullWidth>
+          <InputLabel id="plant-select-label">Planta</InputLabel>
+          <Select
+            labelId="plant-select-label"
+            id="plant-select"
+            value={plantId}
+            label="Planta"
+            onChange={handleChange}
+          >
+            <MenuItem value={1}>uno</MenuItem>
+            <MenuItem value={2}>dos</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <Box sx={{ maxWidth: 200 }}>
+        <FormControl fullWidth>
+          <InputLabel id="area-select-label">Línea</InputLabel>
+          <Select
+            labelId="area-select-label"
+            id="area-select"
+            value={areaId}
+            label="Línea"
+            onChange={handleChangeArea}
+          >
+            <MenuItem value={1}>uno</MenuItem>
+            <MenuItem value={2}>dos</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <Box sx={{ maxWidth: 200 }}>
+        <FormControl fullWidth>
+          <InputLabel id="equip-select-label">Equipo</InputLabel>
+          <Select
+            labelId="equip-select-label"
+            id="equip-select"
+            value={equipId}
+            label="Equipo"
+            onChange={handleChangeEquipo}
+          >
+            <MenuItem value={1}>uno</MenuItem>
+            <MenuItem value={2}>dos</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+    </div>
+  );
+}
